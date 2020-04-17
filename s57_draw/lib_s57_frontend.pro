@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui widgets
 
 TARGET =    lib_s57_frontend
 TEMPLATE =  app

@@ -1,6 +1,10 @@
-QT       += core gui
-
-TARGET =    lib_s57
+QT       += core gui widgets
+CONFIG(debug,debug|release){
+TARGET =    lib_s57d
+}
+else{
+TARGET=lib_s57
+}
 TEMPLATE = lib
 DESTDIR = ../s57_bin
 DLLDESTDIR = ../s57_bin

@@ -5,8 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui opengl
+CONFIG(debug,debug|release): TARGET =    s57_drawd
+CONFIG(release,debug|release): TARGET =    s57_draw
 
-TARGET =    s57_draw
 TEMPLATE =  app
 DESTDIR = ../s57_bin
 
@@ -15,14 +16,16 @@ SOURCES  +=\
             s57_drawwindow.cpp
 
 HEADERS  += \
-            s57_buildscene.h \
             s57_drawwindow.h
 
 FORMS    += \
     S57_DrawWindow.ui
 
-LIBS +=\
-            ../s57_bin/lib_s57.lib
+#lib_s57.dll
+INCLUDEPATH += $$PWD
+DEPENDPATH += $$PWD
+win32:CONFIG(release, debug|release): LIBS += ../s57_bin/lib_s57.lib
+else:win32:CONFIG(debug, debug|release): LIBS += ../s57_bin/lib_s57d.lib
 
 include (ogr.pri)
 

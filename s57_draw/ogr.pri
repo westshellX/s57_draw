@@ -1,12 +1,8 @@
-GDAL_PATH = ../gdal
-#GDAL_PATH = ../s57
+#GDAL_PATH = ../gdal
+GDAL_PATH = C:/Users/westshell_ASUS/Documents/vcpkg/installed/x86-windows
 
-LIBS += $$GDAL_PATH/gdal.lib \
-        $$GDAL_PATH/port/cpl.lib \
-        $$GDAL_PATH/ogr/ogr.lib \
-        $$GDAL_PATH/ogr/ogrsf_frmts/ogrsf_frmts.lib \
-        $$GDAL_PATH/frmts/iso8211/libiso8211.lib
-INCLUDEPATH +=  $$GDAL_PATH/ogr \
+LIBS += $$GDAL_PATH/lib/gdal.lib
+INCLUDEPATH +=  $$GDAL_PATH/include \
                 $$GDAL_PATH/ogr/ogrsf_frmts \
                 $$GDAL_PATH/ogr/ogrsf_frmts/s57 \
                 $$GDAL_PATH/port \

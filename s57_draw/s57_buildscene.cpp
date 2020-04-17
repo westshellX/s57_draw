@@ -167,7 +167,7 @@ struct S57_BuildScene::Data
     {
         RegisterS57_Helper()
         {
-            RegisterOGRS57();
+            OGRRegisterAll();
         }
     };
 
@@ -551,7 +551,7 @@ struct S57_BuildScene::Data
         return (_g);
     }
 
-    void build(OGRDataSource * _ds)
+    void build(GDALDataset * _ds)
     {
         QList<QGraphicsItem *> _items;
         qint64 _z_offset = get_attribute(_ds->GetLayerByName("DSID")->GetNextFeature(), "DSPM_CSCL").toInt();
@@ -777,9 +777,14 @@ void S57_BuildScene::build(const QString & _file_name)
 {
     QString _saved_current = QDir::currentPath();
     QDir::setCurrent(qApp->applicationDirPath() + "/s57/classes");
-    OGRDataSource * _ds = OGRSFDriverRegistrar::Open(_file_name.toLocal8Bit());
-    d->build(_ds);
-    delete _ds;
+//    OGRDataSource * _ds = OGRSFDriverRegistrar::Open(_file_name.toLocal8Bit());
+    GDALDataset *_ds = (GDALDataset*)GDALOpenEx(_file_name.toStdString().c_str(), GDAL_OF_VECTOR, NULL, NULL, NULL);
+    if (_ds)
+    {
+
+        d->build(_ds);
+        delete _ds;
+    }
     QDir::setCurrent(_saved_current);
 }
 
